@@ -9,12 +9,13 @@ const Router=express.Router();
 Router.post('/register',async(req,res)=>{
     let newUser;
     try {
-        const {username,email,gender,password}=req.body;
-
+        const {username,email,password}=req.body;
+        
         // Checking All Fields are available
         if(!username||!email||!password){
             return res.status(400).json({message:"All fields are required"});
         }
+        const gender="male";
         // Checking Existing user or not
         const userExist=await User.findOne({$or:[{username},{email}]});
         if(userExist){
@@ -55,11 +56,11 @@ Router.post('/register',async(req,res)=>{
         });  
 
     } catch (error) {
+
         // console.log("error in register route",error);
         console.log("error in register route");
         console.log("Error Message:", error?.message);
         console.log("Error Stack:", error?.stack);
-
         // If user created but error occur in sending Cookie-->delete the user created in DB.
         if(newUser){
         await User.findByIdAndDelete({_id:newUser._id});
