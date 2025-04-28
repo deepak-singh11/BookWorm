@@ -55,7 +55,7 @@ Router.post('/register',async(req,res)=>{
         });  
 
     } catch (error) {
-        console.log("error in register route");
+        console.log("error in register route",error);
 
         // If user created but error occur in sending Cookie-->delete the user created in DB.
         if(newUser){
