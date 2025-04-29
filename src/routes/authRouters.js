@@ -15,6 +15,7 @@ Router.post('/register',async(req,res)=>{
         if(!username||!email||!password){
             return res.status(400).json({message:"All fields are required"});
         }
+
         const gender="male";
         // Checking Existing user or not
         const userExist=await User.findOne({$or:[{username},{email}]});
