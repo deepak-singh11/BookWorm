@@ -11,11 +11,11 @@ const app=express();
 const PORT=process.env.PORT;
 
 app.use(cors({
-    origin: 'http://localhost:8081', // or '*' for all origins in dev (NOT recommended in prod)
+    origin: '*', // or '*' for all origins in dev (NOT recommended in prod)
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'], // allow custom headers from frontend
-    credentials: true // allow cookies and credentials (if used)
-  }));
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
